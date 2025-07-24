@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # fruit-shop
 =======
-# Ecommerce Project
+
 
 ## Project Description
 A simple e-commerce project that allows users to browse products, add them to the cart, and complete the checkout process. The project includes a dynamic user interface with features such as product management, category management, cart functionality, and order placement.
