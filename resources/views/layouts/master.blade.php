@@ -68,8 +68,9 @@
 								<li><a href="/product">product</a>
 									<ul class="sub-menu">
 										<li><a href="/product">All Products</a></li>
-										<li><a href="/product/create">Add Product</a></li>
-
+										@if(Auth::user()->role=="admin") 
+											<li><a href="/product/create">Add Product</a></li>
+										@endif
 										
 									</ul>
 								</li>

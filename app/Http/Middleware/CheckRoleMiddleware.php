@@ -2,13 +2,35 @@
 
 namespace App\Http\Middleware;
 
+
 use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class CheckRoleMiddleware
 {
-    public function handle($request, Closure $next, ...$roles)
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string[]  ...$roles
+     * @return mixed
+     */
+
+    public function handle($request, Closure $next,$roles)
     {
-        // منطق التحقق من الدور
-        return $next($request);
+        
+        $user = $request->user();
+
+
+        
+        if (Auth::user() && $user->role==$roles) {
+            return $next($request);
+        } else {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
     }
 }

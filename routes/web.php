@@ -27,7 +27,7 @@ Route::post('/search', [HomeController::class, 'search'])->name('search');
 
 
 Route::get('/cart',[CartController::class,'cart'])->name('cart')->middleware('auth');
-Route::post('/addtocart',[CartController::class,'addtocart'])->name('addtocart')->middleware('auth');;
+Route::post('/addtocart',[CartController::class,'addtocart'])->name('addtocart')->middleware('auth');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 Route::get('/cart/remove/{productid}', [CartController::class, 'remove'])->name('cart.remove');
 
@@ -36,6 +36,10 @@ Route::get('/order',[HomeController::class,'order'])->name('order');
 Route::post('/storeorder', [HomeController::class, 'storeorder'])->name('storeorder')->middleware('auth');
 Route::get('/pre-order', [HomeController::class, 'preOrder'])->name('pre-order')->middleware('auth');
 
-
+Route::middleware(['role:admin'])->group(function () {
+    Route::get('/admin', function () {
+        return 'Welcome Admin!';
+    });
+});
 
 

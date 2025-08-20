@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class productController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('role:admin')->except(['index', 'show']);
+    }
+
     public function index()
     {
         $categories = Category::all();
@@ -36,7 +42,7 @@ class productController extends Controller
             'description' => 'required|string|min:3|max:1000',
             'price' => 'required|numeric|min:0', 
             'quantity' => 'required|integer|min:1',
-            'imagepath' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imagepath' => 'sometime|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category_id' => 'required|exists:categories,id'
 
         ]);
